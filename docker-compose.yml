@@ -13,3 +13,13 @@ services:
       - "5000:5000"
     volumes:
       - "./web:/app"
+  db:
+    image: mongo:3.5
+    restart: unless-stopped
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - "27017:27017"
+    command: mongod --port 27017 --bind_ip_all
+volumes:
+  mongodata:
